@@ -1,4 +1,7 @@
 # Calculator
+
+Developed in IntelliJ. To run use class files in out folder or compile from classes in src folder.
+
 Overview:
 This is a simple calculator application written in Java that supports basic mathematical operations and a few special operations. It features a graphical user interface (GUI) with buttons for digits (0-9), operators (+, -, *, /, %, ^, and &), and functionality to evaluate mathematical expressions.
 
