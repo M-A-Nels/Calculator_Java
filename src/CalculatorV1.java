@@ -19,7 +19,7 @@ public class CalculatorV1 implements ActionListener {
     }
 
     public void Calculator() {
-        JFrame frame = new JFrame("Calculator");
+        JFrame frame = new JFrame("CalculatorV1");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(300, 400);
         frame.setResizable(false);
@@ -59,6 +59,7 @@ public class CalculatorV1 implements ActionListener {
     }
 
     //button action
+    @Override
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
         display.setText(command);
