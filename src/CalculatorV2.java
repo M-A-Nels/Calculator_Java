@@ -22,6 +22,8 @@ public class CalculatorV2 implements ActionListener {
     }
 
     public void Calculator() {
+        Pattern Digit =  Pattern.compile("[0-9]{1}");
+
         JFrame frame = new JFrame("CalculatorV2");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(300, 400);
@@ -36,6 +38,9 @@ public class CalculatorV2 implements ActionListener {
         display.setHorizontalAlignment(JTextField.RIGHT);
         panel.add(display, BorderLayout.NORTH);
 
+        //set display answer field background
+        display.setBackground(Color.lightGray);
+
         JPanel buttonsPanel = new JPanel();
         buttonsPanel.setLayout(new GridLayout(5, 4, 5, 5));
         String[] buttonLabels = {
@@ -49,17 +54,52 @@ public class CalculatorV2 implements ActionListener {
             JButton button = new JButton(label);
             buttonsPanel.add(button);
             button.addActionListener(this);
+            //set button colour
+            button.setBackground(Color.pink);
+
+            if(label.equals("C")) //set clear button colour
+            {
+                Color color = new Color(159, 45, 48);
+                button.setBackground(color);
+                button.setForeground(Color.white);
+            }
+            else if(label.equals("Ans"))
+            {//set Ans button colour
+                button.setBackground(Color.darkGray);
+                button.setForeground(Color.white);
+            }
+            else if (label.equals("="))
+            {// set equals button colour
+                Color color = new Color(178,194,72);
+                button.setBackground(color);
+            }
+            else
+            {   //Set numbers' button colour
+                Matcher matcher = Digit.matcher(label);
+                if(matcher.find())
+                {
+                    Color color = new Color(173, 216, 230);
+                    button.setBackground(color);
+                }
+            }
         }
 
         panel.add(buttonsPanel, BorderLayout.CENTER);
 
         frame.getContentPane().add(panel);
         frame.setVisible(true);
+
+        //set button panel background colour
+        buttonsPanel.setBackground(Color.gray);
     }
 
     //button action
     @Override
     public void actionPerformed(ActionEvent e) {
+        //reset display settings
+        display.setBackground(Color.lightGray);
+        display.setForeground(Color.black);
+
         String command = e.getActionCommand();
         display.setText(command);
 
@@ -174,6 +214,13 @@ public class CalculatorV2 implements ActionListener {
                     display.setText(displayExpression);
                 }
             }
+        }
+
+        //set display to red if error in evaluation
+        if(display.getText().equals("Error"))
+        {
+            display.setBackground(Color.red);
+            display.setForeground(Color.white);
         }
 
     }
